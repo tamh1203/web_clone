@@ -7,9 +7,12 @@ import App from './App.tsx';
 import ProductList from './Components/ProductList.tsx';
 import DetailProduct from './Pages/DetailProduct.tsx';
 import Header from './Components/Header.tsx';
+import Cart from './Components/Cart.tsx';
+import { CartProvider } from './context/CartContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+     <CartProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -18,7 +21,10 @@ createRoot(document.getElementById('root')!).render(
         <Route path="product/:id" element={<DetailProduct />}>
           <Route index element={<Header />} />
         </Route>
+        <Route path='product/cart' element={<Cart />} />
       </Routes>
     </BrowserRouter>
+     </CartProvider>
   </StrictMode>
+ 
 );
