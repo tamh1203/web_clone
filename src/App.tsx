@@ -9,10 +9,10 @@ function App() {
       <main className="header-container">
         <Header />
         <HomePage />
-        <div className="homepage-container">
-          <Outlet />
-        </div>
       </main>
+      <div className="homepage-container">
+        <Outlet />
+      </div>
     </div>
   );
 }

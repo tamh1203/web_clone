@@ -6,6 +6,7 @@ import './index.css';
 import App from './App.tsx';
 import ProductList from './Components/ProductList.tsx';
 import DetailProduct from './Pages/DetailProduct.tsx';
+import Header from './Components/Header.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<App />}>
           <Route index element={<ProductList />} />
         </Route>
-        <Route path="product/:id" element={<DetailProduct />} />
+        <Route path="product/:id" element={<DetailProduct />}>
+          <Route index element={<Header />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>
