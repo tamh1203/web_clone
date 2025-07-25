@@ -11,14 +11,14 @@ type MyModalProps = {
   handleClose: () => void;
 };
 
-const Cart: React.FC<MyModalProps> = ({ show, handleClose }) => {
+const Cart = ({ show, handleClose }:MyModalProps) => {
   const { cartItems, addToCart, decreaseQuantity, getTotalPrice } = useCart();
 
   const navigate = useNavigate();
   // console.log('cart items', cartItems);
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} >
       <Modal.Header closeButton>
         <Modal.Title>
           Your Cart
@@ -46,7 +46,7 @@ const Cart: React.FC<MyModalProps> = ({ show, handleClose }) => {
             {cartItems?.map((item) => {
               return (
                 <>
-                  <div>
+                  <div className='cart-container'>
                     <div className="detail" key={item.id}>
                       <img src={item.thumbnail} alt="" />
                       <div className="description">

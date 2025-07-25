@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
@@ -10,6 +9,8 @@ import Header from './Components/Header.tsx';
 import Cart from './Components/Cart.tsx';
 import { CartProvider } from './context/CartContext';
 import { ToastContainer } from 'react-toastify';
+
+
 
 createRoot(document.getElementById('root')!).render(
   <CartProvider>

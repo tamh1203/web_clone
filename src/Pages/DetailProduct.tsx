@@ -8,18 +8,27 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { toast } from 'react-toastify';
 import Cart from '../Components/Cart';
+import ProductSlider from '../Components/ProductSlider';
+
+
 
 const DetailProduct = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<Product|null>([null]);
   const { addToCart } = useCart();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [products,setProducts] = useState<Product[]>([]);
   useEffect(() => {
     if (id) {
       productAPI.getById(Number(id)).then((res) => setProduct(res));
     }
   }, [id]);
 
+useEffect(()=>{
+  productAPI.getAll().then(setProducts).catch(console.error)
+},[])
+
+console.log( products);
   const handleAddCart = () => {
     if (product) {
       addToCart(product);
@@ -32,7 +41,7 @@ const DetailProduct = () => {
       });
     }
   };
-  console.log('product', product);
+  // console.log('product', product);
   return (
     <>
       <Outlet />
@@ -65,10 +74,14 @@ const DetailProduct = () => {
             <button className="add-cart" onClick={() => handleAddCart()}>
               Add to Cart
             </button>
-            <button onClick={() => setShowModal(true)}>Buy now</button>
+            <button onClick={() =>{
+                          addToCart(product);
+                          setShowModal(true);
+                     }}>Buy now</button>
           </div>
         </div>
       </div>
+      <ProductSlider products={products}/>
     </>
   );
 };
