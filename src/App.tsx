@@ -1,4 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+import 'react-toastify/dist/ReactToastify.css';
 import Header from './Components/Header';
 import HomePage from './Pages/HomePage';
 import './styles/App.scss';
@@ -14,6 +16,7 @@ function App() {
       <div className="homepage-container">
         <Outlet />
       </div>
+     
     </div>
   );
 }

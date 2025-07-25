@@ -1,0 +1,125 @@
+.detail {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  margin-bottom: 10px;
+  img {
+    width: 150px;
+    background-color: #dcdcdc;
+    border-radius: 15px;
+    border: none;
+    &:hover {
+      background-color: #ad310b;
+      -webkit-transition: background-color 1000ms linear;
+      -ms-transition: background-color 1000ms linear;
+      transition: background-color 1000ms linear;
+    }
+  }
+  .description {
+    width: 500px;
+    padding-left: 20px;
+
+    h2 {
+      color: #324d67;
+      font-size: 30px;
+    }
+    .title-info {
+      color: #3b4957;
+      font-weight: 600;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      span {
+        color: rgb(255, 51, 0);
+      }
+    }
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid rgb(27, 25, 25);
+      width: 100px;
+      height: 35px;
+      color: #f30606;
+      font-weight: 600;
+      font-size: 15px;
+      text-align: center;
+      .number {
+        padding: 10px;
+      }
+      .minus {
+        border-right: 1px solid black;
+        padding-right: 5px;
+        cursor: pointer;
+      }
+      .plus {
+        color: rgb(0, 255, 179);
+        border-left: 1px solid black;
+        padding-left: 5px;
+        cursor: pointer;
+      }
+    }
+    .quantity-desc {
+      span {
+        color: #000;
+        border: 1px solid rgb(82, 60, 60);
+        padding: 3px 10px;
+        margin-left: 4px;
+        cursor: pointer;
+      }
+    }
+
+    .button-add-buy {
+      button {
+        margin-top: 30px;
+        border: 1px solid black;
+        padding: 10px;
+        margin-right: 15px;
+        width: 150px;
+        cursor: pointer;
+        background-color: #f02d34;
+        border-radius: 3px;
+        transition: transform 0.3s ease;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      .add-cart {
+        background-color: white;
+      }
+    }
+  }
+}
+.header-item {
+  color: red;
+}
+.modal-body {
+  .empty-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    button {
+      margin-top: 30px;
+      border: 1px solid black;
+      padding: 10px;
+      margin-right: 15px;
+      width: 200px;
+      cursor: pointer;
+      background-color: #f02d34;
+      border-radius: 3px;
+      transition: transform 0.3s ease;
+      border: none;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+.modal-footer {
+  .total-payment {
+    color: red;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+}

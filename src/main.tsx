@@ -8,11 +8,12 @@ import ProductList from './Components/ProductList.tsx';
 import DetailProduct from './Pages/DetailProduct.tsx';
 import Header from './Components/Header.tsx';
 import Cart from './Components/Cart.tsx';
-import { CartProvider } from './context/CartContext'
+import { CartProvider } from './context/CartContext';
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-     <CartProvider>
+  <CartProvider>
+    <ToastContainer position="top-right" autoClose={2000} />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -21,10 +22,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="product/:id" element={<DetailProduct />}>
           <Route index element={<Header />} />
         </Route>
-        <Route path='product/cart' element={<Cart />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
-     </CartProvider>
-  </StrictMode>
- 
+  </CartProvider>
 );

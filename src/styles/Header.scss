@@ -4,10 +4,10 @@
   margin: 6px 0px;
   position: relative;
   .title-header {
-      color: #808080;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 18px;
+    color: #808080;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
   }
   .cart-icon {
     font-size: 25px;
@@ -20,6 +20,17 @@
       transform: scale(1.2);
     }
   }
+  .cart-length {
+    position: absolute;
+    top: 10%;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    border: 1px solid red;
+    padding: 0 6px;
+    border-radius: 50%;
+  }
 }
 .main-container {
   .banner-container {
@@ -27,9 +38,9 @@
     background-color: #dcdcdc;
     border-radius: 15px;
     position: relative;
-    height: 300px;
+    // height: 300px;
     line-height: 0.9;
-    width: 84%;
+    // width: 84%;
     margin-left: 40px;
     .beats-solo {
       font-size: 20px;

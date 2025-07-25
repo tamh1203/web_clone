@@ -10,7 +10,7 @@ const HomePage = () => {
           <img className="hero-banner-image" src={headphone} alt="headphones" />
           <button>Shop now</button>
           <div className="des">
-            <h5>Description</h5>
+            <h4>Description</h4>
             <p>Supa Cool hedphones best in the market</p>
           </div>
         </div>
