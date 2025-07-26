@@ -11,7 +11,7 @@ type MyModalProps = {
   handleClose: () => void;
 };
 
-const Cart: React.FC<MyModalProps> = ({ show, handleClose }) => {
+const Cart = ({ show, handleClose }: MyModalProps) => {
   const { cartItems, addToCart, decreaseQuantity, getTotalPrice } = useCart();
 
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const Cart: React.FC<MyModalProps> = ({ show, handleClose }) => {
             {cartItems?.map((item) => {
               return (
                 <>
-                  <div>
+                  <div className="cart-container">
                     <div className="detail" key={item.id}>
                       <img src={item.thumbnail} alt="" />
                       <div className="description">

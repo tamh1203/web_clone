@@ -9,6 +9,12 @@
     cursor: pointer;
     font-size: 18px;
   }
+  .button-lg {
+    button {
+      padding: 5px 16px;
+      margin-right: 5px;
+    }
+  }
   .cart-icon {
     font-size: 25px;
     color: gray;
@@ -23,7 +29,7 @@
   .cart-length {
     position: absolute;
     top: 10%;
-    right: -5px;
+    right: 8px;
     background-color: red;
     color: white;
     font-size: 12px;

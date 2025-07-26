@@ -1,10 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './Components/Header';
 import HomePage from './Pages/HomePage';
 import './styles/App.scss';
 import { Outlet } from 'react-router-dom';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 function App() {
   return (
@@ -16,7 +18,6 @@ function App() {
       <div className="homepage-container">
         <Outlet />
       </div>
-     
     </div>
   );
 }

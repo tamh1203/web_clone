@@ -40,9 +40,9 @@ const ProductList = () => {
   }
 
   // useEffect(() => {
-  //   productAPI.getAll().then(setProduct).catch(console.error);
+  //   productAPI.getAll().then(setProducts).catch(console.error);
   // }, []);
-  // console.log(product);
+  // console.log(products);
   return (
     <>
       <div className="products-heading">

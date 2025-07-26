@@ -1,35 +1,55 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import type { Product } from '../api/productAPI';
 import { productAPI } from '../api/productAPI';
 import { Outlet } from 'react-router-dom';
 import './../styles/DetailProduct.scss';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
-import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
+import Swal from 'sweetalert2';
 import Cart from '../Components/Cart';
+import ProductSlider from '../Components/ProductSlider';
 
 const DetailProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     if (id) {
       productAPI.getById(Number(id)).then((res) => setProduct(res));
     }
   }, [id]);
 
-  const handleAddCart = () => {
+  useEffect(() => {
+    productAPI.getAll().then(setProducts).catch(console.error);
+  }, []);
+
+  console.log(products);
+  const handleAddToCart = () => {
+    if (!user) {
+      Swal.fire({
+        icon: 'question', // 'success' | 'error' | 'warning' | 'info' | 'question'
+        title: 'Please login to add products!',
+        text: 'Bạn có muốn tạo tài khoản ?',
+      });
+      navigate('/login');
+      return;
+    }
     if (product) {
       addToCart(product);
-      toast.success('Add cart success!', {
-        position: 'top-center',
-        autoClose: 1000,
+      Swal.fire({
+        icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
+        title: 'Add to Products!',
+        text: 'Đã thêm sản phẩn vào giỏ hàng!',
       });
     }
   };
-  console.log('product', product);
+  // console.log('product', product);
   return (
     <>
       <Outlet />
@@ -59,13 +79,23 @@ const DetailProduct = () => {
           </p>
           <p className="quantity-desc title-info">Quatily: 1</p>
           <div className="button-add-buy">
-            <button className="add-cart" onClick={() => handleAddCart()}>
+            <button className="add-cart" onClick={() => handleAddToCart()}>
               Add to Cart
             </button>
-            <button onClick={() => setShowModal(true)}>Buy now</button>
+            <button
+              onClick={() => {
+                if (product) {
+                  addToCart(product);
+                }
+                setShowModal(true);
+              }}
+            >
+              Buy now
+            </button>
           </div>
         </div>
       </div>
+      <ProductSlider products={products} />
     </>
   );
 };
