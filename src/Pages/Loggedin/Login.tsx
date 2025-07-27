@@ -1,66 +1,128 @@
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import Swal from 'sweetalert2';
 import '../../styles/Login.scss';
+import {
+  MDBContainer,
+  MDBCol,
+  MDBRow,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBSpinner,
+} from 'mdb-react-ui-kit';
+
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     try {
       await login(username, password);
-      Swal.fire({
-        icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
-        title: 'Login success!',
-        text: 'Đăng nhập thành công',
-      });
-      navigate('/');
+      setLoading(true);
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
+          title: 'Login success!',
+          text: 'Đăng nhập thành công',
+        });
+        navigate('/');
+      }, 2000);
     } catch (error) {
-      Swal.fire({
-        icon: 'error', // 'success' | 'error' | 'warning' | 'info' | 'question'
-        title: 'Sai tài khoản hoặc mật khẩu',
-        text: 'Đăng nhập không thành công',
-      });
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        Swal.fire({
+          icon: 'error', // 'success' | 'error' | 'warning' | 'info' | 'question'
+          title: 'Sai tài khoản hoặc mật khẩu',
+          text: 'Đăng nhập không thành công',
+        });
+      }, 2000);
+    } finally {
+      console.log('API call attempt finished.');
+      // Perform any necessary cleanup, like closing a connection or resetting UI elements
     }
   };
   return (
-    <div>
-      <form className="form-submit" onSubmit={handleLogin}>
-        <h2>Đăng nhập</h2>
-        <div>
-          <label>User Name:</label>
-          <div>
-            <input
-              type="text"
-              className="form-control"
-              value={username}
-              onChange={(event) => setUsername(event?.target.value)}
-              required
-            />
+    <>
+      <div>
+        {loading === true ? (
+          <div className="text-center">
+            <MDBBtn disabled>
+              <MDBSpinner size="sm" role="status" tag="span" className="me-2" />
+              Loading...
+            </MDBBtn>
           </div>
-        </div>
-        <div>
-          <label>Password :</label>
-          <div>
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(event) => setPassword(event?.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Sign in
-        </button>
-        <button className="btn btn-danger">Register</button>
-      </form>
-    </div>
+        ) : (
+          ''
+        )}
+        <form className="form-submit" onSubmit={handleLogin}>
+          <MDBContainer className="my-5">
+            <MDBRow>
+              <MDBCol col="10" md="6">
+                <img
+                  src="https://static.vecteezy.com/system/resources/previews/005/879/539/non_2x/cloud-computing-modern-flat-concept-for-web-banner-design-man-enters-password-and-login-to-access-cloud-storage-for-uploading-and-processing-files-illustration-with-isolated-people-scene-free-vector.jpg"
+                  className="img-fluid"
+                  alt="Phone"
+                />
+              </MDBCol>
+              <MDBCol col="4" md="6">
+                <h1>Đăng Nhập</h1>
+                <MDBInput
+                  wrapperClass="mb-4"
+                  label="User Name"
+                  placeholder="emilys"
+                  id="formControlLgEmail"
+                  type="text"
+                  size="lg"
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
+                  required
+                />
+                <MDBInput
+                  wrapperClass="mb-4"
+                  id="formControlLgPassword"
+                  label="Password"
+                  type="password"
+                  size="lg"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  required
+                />
+
+                <div className="d-flex justify-content-between mx-4 mb-4">
+                  <MDBCheckbox
+                    name="rememberMe"
+                    id="rememberMe"
+                    label="Remember me"
+                  />
+                  <a href="#!">Forgot password?</a>
+                </div>
+                <MDBBtn
+                  className="mb-4 w-100"
+                  size="lg"
+                  type="submit"
+                  color="info"
+                >
+                  Sign in
+                </MDBBtn>
+                <div className="text-center">
+                  <p>
+                    Not a member? <a href="#!">Register</a>
+                  </p>
+                </div>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </form>
+      </div>
+    </>
   );
 };
 

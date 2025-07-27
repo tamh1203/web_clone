@@ -11,6 +11,7 @@ import Login from './Pages/Loggedin/Login.tsx';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext.tsx';
 import { ToastContainer } from 'react-toastify';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>
