@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Footer from './Components/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       </main>
       <div className="homepage-container">
         <Outlet />
+        <Footer />
       </div>
     </div>
   );

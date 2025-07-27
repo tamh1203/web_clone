@@ -29,6 +29,7 @@ const ProductList = () => {
     };
     fetchData();
   }, [page]);
+  // phân trang
   const totalPages = Math.ceil(total / limit);
   const maxPageToShow = 4;
   let startPage = Math.max(1, page - Math.floor(maxPageToShow / 2));

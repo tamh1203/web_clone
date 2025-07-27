@@ -23,15 +23,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   // thêm sản phẩm
   const addToCart = (product: Product) => {
+    // prev là giá trị hiện tại của mảng
     setCartItems((prev) => {
+      // Kiểm tra xem sản phẩm này đã có trong giỏ hàng chưa (dựa vào id).
       const found = prev.find((item) => item.id === product.id);
+      // nếu có (found)
       if (found) {
+        // copy lại mảng, quantity + 1
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
+        //nếu chưa thì thêm sản phần
         return [...prev, { ...product, quantity: 1 }];
       }
     });

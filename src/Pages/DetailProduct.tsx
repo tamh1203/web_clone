@@ -10,6 +10,7 @@ import { useAuth } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 import Cart from '../Components/Cart';
 import ProductSlider from '../Components/ProductSlider';
+import Footer from '../Components/Footer';
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -49,6 +50,21 @@ const DetailProduct = () => {
       });
     }
   };
+  const handleBuyNow = () => {
+    if (!user) {
+      Swal.fire({
+        icon: 'error', // 'success' | 'error' | 'warning' | 'info' | 'question'
+        title: 'Please login to buy products!',
+        text: 'Bạn có muốn đăng nhập ?',
+      });
+      navigate('/');
+      return;
+    }
+    if (product) {
+      addToCart(product);
+      setShowModal(true);
+    }
+  };
   // console.log('product', product);
   return (
     <>
@@ -82,20 +98,12 @@ const DetailProduct = () => {
             <button className="add-cart" onClick={() => handleAddToCart()}>
               Add to Cart
             </button>
-            <button
-              onClick={() => {
-                if (product) {
-                  addToCart(product);
-                }
-                setShowModal(true);
-              }}
-            >
-              Buy now
-            </button>
+            <button onClick={() => handleBuyNow()}>Buy now</button>
           </div>
         </div>
       </div>
       <ProductSlider products={products} />
+      <Footer />
     </>
   );
 };

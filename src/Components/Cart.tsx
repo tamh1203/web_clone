@@ -5,7 +5,7 @@ import './../styles/Cart.scss';
 import { FaStar, FaRegStar, FaMinus, FaPlus } from 'react-icons/fa';
 import { IoMdCart } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 type MyModalProps = {
   show: boolean;
   handleClose: () => void;
@@ -16,7 +16,14 @@ const Cart = ({ show, handleClose }: MyModalProps) => {
 
   const navigate = useNavigate();
   // console.log('cart items', cartItems);
-
+  const hanldePayment = () => {
+    Swal.fire({
+      icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
+      title: 'Payment success!',
+      text: 'Đã thanh toán thành công !',
+    });
+    navigate('/');
+  };
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -92,13 +99,15 @@ const Cart = ({ show, handleClose }: MyModalProps) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <div>
-          Total Payment:{' '}
-          <span className="total-payment">${getTotalPrice().toFixed(2)}</span>
+        <div className="fw-bold">
+          Total Payment:
+          <span className="total-payment"> ${getTotalPrice().toFixed(2)}</span>
         </div>
-        <Button variant="secondary" onClick={handleClose}>
-          Đóng
-        </Button>
+        <div>
+          <Button variant="primary" onClick={hanldePayment}>
+            Thanh toán
+          </Button>
+        </div>
       </Modal.Footer>
     </Modal>
   );
