@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import Cart from '../Components/Cart';
 import ProductSlider from '../Components/ProductSlider';
 import Footer from '../Components/Footer';
+import Swiper from 'swiper';
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -38,7 +39,6 @@ const DetailProduct = () => {
         title: 'Please login to add products!',
         text: 'Bạn có muốn tạo tài khoản ?',
       });
-      navigate('/login');
       return;
     }
     if (product) {
@@ -53,11 +53,22 @@ const DetailProduct = () => {
   const handleBuyNow = () => {
     if (!user) {
       Swal.fire({
-        icon: 'error', // 'success' | 'error' | 'warning' | 'info' | 'question'
+        icon: 'warning', // 'success' | 'error' | 'warning' | 'info' | 'question'
         title: 'Please login to buy products!',
         text: 'Bạn có muốn đăng nhập ?',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Có',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Không',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+        if (result.isDismissed) {
+          navigate('/');
+        }
       });
-      navigate('/');
       return;
     }
     if (product) {

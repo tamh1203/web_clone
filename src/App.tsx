@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Footer from './Components/Footer';
 
+
 function App() {
   return (
     <div className="app-container">

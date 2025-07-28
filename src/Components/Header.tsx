@@ -6,12 +6,14 @@ import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import Cart from './Cart';
+import ModalRegister from './Modal/ModalRegister';
 
 const Header = () => {
   const navigate = useNavigate();
   const { cartItems } = useCart();
   const { logout, user } = useAuth();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModalRegister, setShowModalRegister] = useState<boolean>(false);
   // console.log(cartItems);
   const handleLogOut = () => {
     logout();
@@ -45,7 +47,12 @@ const Header = () => {
                 LogIn
               </button>
             )}
-            <button className="btn btn-danger">Register</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => setShowModalRegister(true)}
+            >
+              Register
+            </button>
             <button
               onClick={() => {
                 setShowModal(true);
@@ -58,6 +65,10 @@ const Header = () => {
           </div>
         </div>
         <Cart show={showModal} handleClose={() => setShowModal(false)} />
+        <ModalRegister
+          show={showModalRegister}
+          handleClose={() => setShowModalRegister(false)}
+        />
       </header>
     </div>
   );
