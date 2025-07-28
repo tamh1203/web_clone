@@ -7,17 +7,19 @@ import ProductList from './Components/ProductList.tsx';
 import DetailProduct from './Pages/DetailProduct.tsx';
 import Header from './Components/Header.tsx';
 import Cart from './Components/Cart.tsx';
-import Login from './Pages/Loggedin/Login.tsx';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext.tsx';
 import { ToastContainer } from 'react-toastify';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import Register from './Pages/Loggedin/Register.tsx';
+import ScrollToTop from './Components/ScrollToTop.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>
     <CartProvider>
       <ToastContainer position="top-right" autoClose={2000} />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<ProductList />} />
@@ -29,7 +31,7 @@ createRoot(document.getElementById('root')!).render(
             path="/cart"
             element={<Cart show={true} handleClose={() => {}} />}
           />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

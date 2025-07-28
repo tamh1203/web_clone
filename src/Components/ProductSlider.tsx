@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import '../styles/ProductSlider.scss';
+import { useNavigate } from 'react-router-dom';
 
 type Product = {
   id: number;
@@ -14,6 +15,12 @@ type Props = {
 };
 
 const ProductSlider: React.FC<Props> = ({ products }) => {
+  const navigate = useNavigate();
+
+  const hanldeOnclick = (id: number) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <>
       <div className="header-slider">
@@ -35,10 +42,15 @@ const ProductSlider: React.FC<Props> = ({ products }) => {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <div className="product-card">
-              <img src={product.thumbnail} alt={product.brand} />
-              <h4>{product.brand}</h4>
-              <p>{product.price}$</p>
+            <div
+              className="product-card"
+              onClick={() => hanldeOnclick(product.id)}
+            >
+              <div className="product">
+                <img src={product.thumbnail} alt={product.brand} />
+                <h4>{product.brand}</h4>
+                <p>{product.price}$</p>
+              </div>
             </div>
           </SwiperSlide>
         ))}

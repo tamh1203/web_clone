@@ -1,4 +1,4 @@
-import { useCart } from '../context/CartContext';
+import { useCart } from '../hooks/useCart';
 import Button from 'react-bootstrap/Button';
 import { Modal } from 'react-bootstrap';
 import './../styles/Cart.scss';

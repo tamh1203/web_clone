@@ -1,11 +1,11 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 type User = {
   username: string;
   accessToken: string;
 };
-type AuthContextType = {
+export type AuthContextType = {
   user: User | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
@@ -48,12 +48,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     </AuthContext.Provider>
   );
 };
-const useAuth = () => {
-  const ctx = useContext(AuthContext);
-  if (!ctx) {
-    throw new Error('useAuth must be used within AuthProvider');
-  }
-  return ctx;
-};
+// export const useAuth = () => {
+//   const ctx = useContext(AuthContext);
+//   if (!ctx) {
+//     throw new Error('useAuth must be used within AuthProvider');
+//   }
+//   return ctx;
+// };
 
-export { AuthProvider, useAuth };
+export { AuthProvider, AuthContext };

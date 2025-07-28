@@ -1,13 +1,13 @@
 import './../styles/Header.scss';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
+import { useCart } from '../hooks/useCart';
+import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import Cart from './Cart';
-import ModalRegister from './Modal/ModalRegister';
-
+import ModalLogin from './Modal/ModalLogin';
+import UserProfile from './UserProfile';
 const Header = () => {
   const navigate = useNavigate();
   const { cartItems } = useCart();
@@ -42,14 +42,14 @@ const Header = () => {
             ) : (
               <button
                 className="btn btn-primary"
-                onClick={() => navigate('/login')}
+                onClick={() => setShowModalRegister(true)}
               >
                 LogIn
               </button>
             )}
             <button
               className="btn btn-danger"
-              onClick={() => setShowModalRegister(true)}
+              onClick={() => navigate('/register')}
             >
               Register
             </button>
@@ -65,10 +65,11 @@ const Header = () => {
           </div>
         </div>
         <Cart show={showModal} handleClose={() => setShowModal(false)} />
-        <ModalRegister
+        <ModalLogin
           show={showModalRegister}
           handleClose={() => setShowModalRegister(false)}
         />
+        <UserProfile />
       </header>
     </div>
   );

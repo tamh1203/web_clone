@@ -5,8 +5,8 @@ import { productAPI } from '../api/productAPI';
 import { Outlet } from 'react-router-dom';
 import './../styles/DetailProduct.scss';
 import { FaStar, FaRegStar } from 'react-icons/fa';
-import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
+import { useCart } from '../hooks/useCart';
+import { useAuth } from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import Cart from '../Components/Cart';
 import ProductSlider from '../Components/ProductSlider';
@@ -20,6 +20,7 @@ const DetailProduct = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
+
   useEffect(() => {
     if (id) {
       productAPI.getById(Number(id)).then((res) => setProduct(res));
