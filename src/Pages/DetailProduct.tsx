@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 import Cart from '../Components/Cart';
 import ProductSlider from '../Components/ProductSlider';
 import Footer from '../Components/Footer';
-import Swiper from 'swiper';
 
 const DetailProduct = () => {
   const { id } = useParams();

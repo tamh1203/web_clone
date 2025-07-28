@@ -25,7 +25,10 @@ createRoot(document.getElementById('root')!).render(
           <Route path="product/:id" element={<DetailProduct />}>
             <Route index element={<Header />} />
           </Route>
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={<Cart show={true} handleClose={() => {}} />}
+          />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
