@@ -3,18 +3,49 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { useAuth } from '../hooks/useAuth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Cart from './Cart';
 import ModalLogin from './Modal/ModalLogin';
-import UserProfile from './UserProfile';
+import axios from 'axios';
+// import UserProfile from './UserProfile';
+
+type UserProfile = {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+};
 const Header = () => {
   const navigate = useNavigate();
   const { cartItems } = useCart();
   const { logout, user } = useAuth();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showModalRegister, setShowModalRegister] = useState<boolean>(false);
+  const [profile, setProfile] = useState<UserProfile>();
+
   // console.log(cartItems);
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) return;
+    axios
+      .get('https://dummyjson.com/auth/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setProfile(res.data);
+      })
+      .catch((err) => {
+        console.error('Lỗi lấy thông tin user:', err);
+      });
+  }, []);
+  console.log('profile', profile);
+
   const handleLogOut = () => {
     logout();
     Swal.fire({
@@ -68,8 +99,10 @@ const Header = () => {
         <ModalLogin
           show={showModalRegister}
           handleClose={() => setShowModalRegister(false)}
+          profile={
+            profile as { firstName: string | null; lastName: string | null }
+          }
         />
-        <UserProfile />
       </header>
     </div>
   );

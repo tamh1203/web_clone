@@ -22,9 +22,13 @@ import {
 type ShowModal = {
   show: boolean;
   handleClose: () => void;
+  profile: {
+    firstName: string | null;
+    lastName: string | null;
+  };
 };
 
-const ModalLogin: React.FC<ShowModal> = ({ show, handleClose }) => {
+const ModalLogin: React.FC<ShowModal> = ({ show, handleClose, profile }) => {
   const { login } = useAuth();
   // const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
@@ -38,12 +42,13 @@ const ModalLogin: React.FC<ShowModal> = ({ show, handleClose }) => {
       setTimeout(() => {
         Swal.fire({
           icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
-          title: 'Login success!',
-          text: 'Đăng nhập thành công',
+          title: 'Đăng nhập thành công!',
+          text: `Chào ${profile.firstName} ${profile.lastName}`,
         });
         handleClose();
       }, 2000);
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       setLoading(true);
       setTimeout(() => {
         setLoading(false);

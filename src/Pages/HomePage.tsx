@@ -8,7 +8,7 @@ const HomePage = () => {
           <h3>Summer sale</h3>
           <h1>SMILE</h1>
           <img className="hero-banner-image" src={headphone} alt="headphones" />
-          <button>Shop now</button>
+          <button className="btn btn-info">Shop now</button>
           <div className="des">
             <h4>Description</h4>
             <p>Supa Cool hedphones best in the market</p>

@@ -106,10 +106,15 @@ const DetailProduct = () => {
           </p>
           <p className="quantity-desc title-info">Quatily: 1</p>
           <div className="button-add-buy">
-            <button className="add-cart" onClick={() => handleAddToCart()}>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleAddToCart()}
+            >
               Add to Cart
             </button>
-            <button onClick={() => handleBuyNow()}>Buy now</button>
+            <button className=" btn btn-danger" onClick={() => handleBuyNow()}>
+              Buy now
+            </button>
           </div>
         </div>
       </div>

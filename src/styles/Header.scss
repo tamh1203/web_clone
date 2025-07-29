@@ -40,13 +40,12 @@
 }
 .main-container {
   .banner-container {
+    margin-top: 30px;
     padding: 100px 50px;
     background-color: #dcdcdc;
     border-radius: 15px;
     position: relative;
-    // height: 300px;
     line-height: 0.9;
-    // width: 84%;
     margin-left: 40px;
     .beats-solo {
       font-size: 20px;
@@ -71,15 +70,10 @@
       height: 450px;
     }
     button {
-      border-radius: 5px;
-      padding: 10px 16px;
-      background-color: #f02d34;
-      color: #fff;
-      border: none;
-      margin-top: 40px;
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
     .des {
       position: absolute;
