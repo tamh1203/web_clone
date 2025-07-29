@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import Cart from './Cart';
 import ModalLogin from './Modal/ModalLogin';
 import axios from 'axios';
-// import UserProfile from './UserProfile';
 
 type UserProfile = {
   id: number;
@@ -24,7 +23,7 @@ const Header = () => {
   const { cartItems } = useCart();
   const { logout, user } = useAuth();
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [showModalRegister, setShowModalRegister] = useState<boolean>(false);
+  const [showModalLogin, setShowModalLogin] = useState<boolean>(false);
   const [profile, setProfile] = useState<UserProfile>();
 
   // console.log(cartItems);
@@ -73,7 +72,7 @@ const Header = () => {
             ) : (
               <button
                 className="btn btn-primary"
-                onClick={() => setShowModalRegister(true)}
+                onClick={() => setShowModalLogin(true)}
               >
                 LogIn
               </button>
@@ -97,11 +96,8 @@ const Header = () => {
         </div>
         <Cart show={showModal} handleClose={() => setShowModal(false)} />
         <ModalLogin
-          show={showModalRegister}
-          handleClose={() => setShowModalRegister(false)}
-          profile={
-            profile as { firstName: string | null; lastName: string | null }
-          }
+          show={showModalLogin}
+          handleClose={() => setShowModalLogin(false)}
         />
       </header>
     </div>

@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import Cart from '../Components/Cart';
 import ProductSlider from '../Components/ProductSlider';
 import Footer from '../Components/Footer';
+import ModalLogin from '../Components/Modal/ModalLogin';
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -18,7 +19,8 @@ const DetailProduct = () => {
   const { addToCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModalCart, setShowModalCart] = useState<boolean>(false);
+  const [showModalLogin, setShowModalLogin] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const DetailProduct = () => {
         cancelButtonText: 'Không',
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate('/login');
+          setShowModalLogin(true);
         }
         if (result.isDismissed) {
           navigate('/');
@@ -73,14 +75,14 @@ const DetailProduct = () => {
     }
     if (product) {
       addToCart(product);
-      setShowModal(true);
+      setShowModalCart(true);
     }
   };
   // console.log('product', product);
   return (
     <>
       <Outlet />
-      <Cart show={showModal} handleClose={() => setShowModal(false)} />
+      <Cart show={showModalCart} handleClose={() => setShowModalCart(false)} />
       <div className="detail-product">
         <img src={product?.thumbnail} alt={product?.title} />
         <div className="description">
@@ -120,6 +122,10 @@ const DetailProduct = () => {
       </div>
       <ProductSlider products={products} />
       <Footer />
+      <ModalLogin
+        show={showModalLogin}
+        handleClose={() => setShowModalLogin(false)}
+      />
     </>
   );
 };

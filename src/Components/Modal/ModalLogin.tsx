@@ -22,13 +22,9 @@ import {
 type ShowModal = {
   show: boolean;
   handleClose: () => void;
-  profile: {
-    firstName: string | null;
-    lastName: string | null;
-  };
 };
 
-const ModalLogin: React.FC<ShowModal> = ({ show, handleClose, profile }) => {
+const ModalLogin: React.FC<ShowModal> = ({ show, handleClose }) => {
   const { login } = useAuth();
   // const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
