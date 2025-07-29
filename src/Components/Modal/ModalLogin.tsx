@@ -39,7 +39,7 @@ const ModalLogin: React.FC<ShowModal> = ({ show, handleClose }) => {
         Swal.fire({
           icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
           title: 'Đăng nhập thành công!',
-          text: `Chào ${profile.firstName} ${profile.lastName}`,
+          text: `Chào bạn`,
         });
         handleClose();
       }, 2000);
