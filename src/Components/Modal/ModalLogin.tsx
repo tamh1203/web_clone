@@ -65,7 +65,7 @@ const ModalLogin: React.FC<ShowModal> = ({ show, handleClose }) => {
         <MDBModalDialog size="lg">
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle className="text-primary ">Đăng Nhập</MDBModalTitle>
+              <MDBModalTitle className="text-primary">Đăng Nhập</MDBModalTitle>
               <MDBBtn
                 className="btn-close"
                 color="none"

@@ -48,7 +48,7 @@ const ProductList = () => {
   //   productAPI.getAll().then(setProducts).catch(console.error);
   // }, []);
   // console.log(products);
-  const productsNew = [...products, ...items];
+  const productsNew = [...items, ...products];
   console.log('productsNew', productsNew);
 
   return (
@@ -60,8 +60,8 @@ const ProductList = () => {
           <p>Đang tải sản phẩm</p>
         ) : (
           <div className="product-container ">
-            {products &&
-              products.map((item) => {
+            {productsNew &&
+              productsNew.map((item) => {
                 return (
                   <div
                     onClick={() => navigate(`/product/${item.id}`)}
