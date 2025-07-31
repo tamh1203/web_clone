@@ -33,7 +33,7 @@ const DetailProduct = () => {
     productAPI.getAll().then(setProducts).catch(console.error);
   }, []);
 
-  console.log(products);
+  // console.log(products);
   const handleAddToCart = () => {
     if (!user) {
       Swal.fire({
@@ -43,6 +43,7 @@ const DetailProduct = () => {
       });
       return;
     }
+
     if (product) {
       addToCart(product);
       Swal.fire({
@@ -52,6 +53,7 @@ const DetailProduct = () => {
       });
     }
   };
+
   const handleBuyNow = () => {
     if (!user) {
       Swal.fire({

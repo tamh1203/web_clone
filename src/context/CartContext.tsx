@@ -45,7 +45,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           }
           return item;
         })
-        .filter((item) => item.quantity > 0); // 👉 xoá nếu quantity = 0
+        .filter((item) => item.quantity > 0); // lọc item có quantity > 0 , xoá nếu quantity = 0.
     });
   };
   // tính tổng tiền sản phẩm
@@ -55,11 +55,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       0
     );
   };
-  // console.log('cart items', cartItems);
+
+  console.log('cart items', cartItems);
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, decreaseQuantity, getTotalPrice }}
+      value={{
+        cartItems,
+        addToCart,
+        decreaseQuantity,
+        getTotalPrice,
+      }}
     >
       {children}
     </CartContext.Provider>

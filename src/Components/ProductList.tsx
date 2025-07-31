@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { productAPI } from '../api/productAPI';
 import type { Product } from '../api/productAPI';
 import './../styles/ProductList.scss';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../redux/store';
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -10,8 +12,10 @@ const ProductList = () => {
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
   const limit = 10;
-
   const navigate = useNavigate();
+  const { items } = useSelector((state: RootState) => state.products);
+
+  console.log('items useSelector', items);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +48,9 @@ const ProductList = () => {
   //   productAPI.getAll().then(setProducts).catch(console.error);
   // }, []);
   // console.log(products);
+  const productsNew = [...products, ...items];
+  console.log('productsNew', productsNew);
+
   return (
     <>
       <div className="products-heading">

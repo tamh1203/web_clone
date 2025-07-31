@@ -24,6 +24,7 @@ const Cart = ({ show, handleClose }: MyModalProps) => {
     });
     navigate('/');
   };
+
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -50,11 +51,11 @@ const Cart = ({ show, handleClose }: MyModalProps) => {
           </div>
         ) : (
           <div>
-            {cartItems?.map((item) => {
+            {cartItems?.map((item, index) => {
               return (
                 <>
-                  <div className="cart-container">
-                    <div className="detail" key={item.id}>
+                  <div className="cart-container" key={index}>
+                    <div className="detail">
                       <img src={item.thumbnail} alt="" />
                       <div className="description">
                         <p className="title-info">
