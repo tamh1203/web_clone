@@ -5,6 +5,7 @@ import type { Product } from '../api/productAPI';
 import './../styles/ProductList.scss';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../redux/store';
+import ProductManager from './CreateProduct';
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -53,6 +54,7 @@ const ProductList = () => {
 
   return (
     <>
+      <ProductManager />
       <div className="products-heading">
         <h2>Best selling Products</h2>
         <p>Speakers of many variations</p>

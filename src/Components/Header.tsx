@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import Cart from './Cart';
 import ModalLogin from './Modal/ModalLogin';
 import axios from 'axios';
-import ProductManager from './ProductManager';
 
 type UserProfile = {
   id: number;
@@ -44,7 +43,7 @@ const Header = () => {
         console.error('Lỗi lấy thông tin user:', err);
       });
   }, []);
-  // console.log('profile', profile);
+  console.log('profile', profile);
 
   const handleLogOut = () => {
     logout();
@@ -100,7 +99,6 @@ const Header = () => {
           show={showModalLogin}
           handleClose={() => setShowModalLogin(false)}
         />
-        <ProductManager />
       </header>
     </div>
   );

@@ -1,13 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 // 1. Kiểu dữ liệu sản phẩm
-type Product = {
+export type Product = {
   id: number;
   title: string;
   price: number;
-  description?: string;
   brand?: string;
-  category?: string;
   thumbnail?: string;
 };
 // 2. Kiểu state
@@ -26,7 +24,7 @@ const initialState: ProductState = {
 
 export const addProductAsync = createAsyncThunk(
   'product/addProductAsync',
-  async (productData: Omit<Product, 'id'>) => {
+  async (productData: Product) => {
     const res = await fetch('https://dummyjson.com/products/add', {
       method: 'POST',
       body: JSON.stringify(productData),
