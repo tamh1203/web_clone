@@ -20,10 +20,18 @@ const Cart = ({ show, handleClose }: MyModalProps) => {
   const hanldePayment = () => {
     Swal.fire({
       icon: 'success', // 'success' | 'error' | 'warning' | 'info' | 'question'
-      title: 'Payment success!',
-      text: 'Đã thanh toán thành công !',
+      title: 'Payment now !',
+      text: 'Bạn có muốn thanh toán không ?',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Có',
+      cancelButtonColor: '#3085d6',
+      cancelButtonText: 'Không',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/payment');
+      }
     });
-    navigate('/');
   };
 
   return (

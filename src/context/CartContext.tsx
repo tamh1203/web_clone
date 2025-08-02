@@ -9,6 +9,7 @@ type CartConTextType = {
   addToCart: (product: Product) => void;
   decreaseQuantity: (productId: number) => void;
   getTotalPrice: () => number;
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartConTextType | undefined>(undefined);
@@ -48,6 +49,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         .filter((item) => item.quantity > 0); // lọc item có quantity > 0 , xoá nếu quantity = 0.
     });
   };
+  // set lại giỏ hàng khi đã thanh toán
+  const clearCart = () => {
+    setCartItems([]);
+  };
   // tính tổng tiền sản phẩm
   const getTotalPrice = () => {
     return cartItems.reduce(
@@ -65,6 +70,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         addToCart,
         decreaseQuantity,
         getTotalPrice,
+        clearCart,
       }}
     >
       {children}

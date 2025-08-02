@@ -15,6 +15,7 @@ import Register from './Pages/Loggedin/Register.tsx';
 import ScrollToTop from './Components/ScrollToTop.tsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
+import PaymentProduct from './Components/PaymentProduct.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
@@ -35,6 +36,7 @@ createRoot(document.getElementById('root')!).render(
               element={<Cart show={true} handleClose={() => {}} />}
             />
             <Route path="/register" element={<Register />} />
+            <Route path="/payment" element={<PaymentProduct />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

@@ -88,15 +88,21 @@ const Header = () => {
               onClick={() => {
                 setShowModal(true);
               }}
-              className="d-inline-flex position-relative"
+              className="cart-icon d-inline-flex position-relative"
             >
-              <MDBBadge
-                pill
-                color="danger"
-                className="position-absolute top-0 start-100 translate-middle"
-              >
-                {cartItems.length}
-              </MDBBadge>
+              {user ? (
+                <MDBBadge
+                  pill
+                  color="danger"
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {cartItems.length}
+                </MDBBadge>
+              ) : (
+                <MDBBadge className="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                  <span className="visually-hidden">0</span>
+                </MDBBadge>
+              )}
 
               <IoCartOutline style={{ fontSize: '25px' }} />
             </div>
