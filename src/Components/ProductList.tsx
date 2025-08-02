@@ -14,6 +14,7 @@ const ProductList = () => {
   const [total, setTotal] = useState<number>(0);
   const limit = 10;
   const navigate = useNavigate();
+
   const { items } = useSelector((state: RootState) => state.products);
 
   console.log('items useSelector', items);

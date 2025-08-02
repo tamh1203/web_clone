@@ -5,6 +5,7 @@ import './../styles/Cart.scss';
 import { FaStar, FaRegStar, FaMinus, FaPlus } from 'react-icons/fa';
 import { IoMdCart } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
 type MyModalProps = {
   show: boolean;

@@ -1,5 +1,4 @@
 import './../styles/Header.scss';
-import { FaShoppingCart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { useAuth } from '../hooks/useAuth';
@@ -8,6 +7,8 @@ import Swal from 'sweetalert2';
 import Cart from './Cart';
 import ModalLogin from './Modal/ModalLogin';
 import axios from 'axios';
+import { MDBBadge } from 'mdb-react-ui-kit';
+import { IoCartOutline } from 'react-icons/io5';
 
 type UserProfile = {
   id: number;
@@ -83,15 +84,22 @@ const Header = () => {
             >
               Register
             </button>
-            <button
+            <div
               onClick={() => {
                 setShowModal(true);
               }}
-              className="cart-icon"
+              className="d-inline-flex position-relative"
             >
-              <FaShoppingCart />
-              <span className="cart-length">{cartItems.length}</span>
-            </button>
+              <MDBBadge
+                pill
+                color="danger"
+                className="position-absolute top-0 start-100 translate-middle"
+              >
+                {cartItems.length}
+              </MDBBadge>
+
+              <IoCartOutline style={{ fontSize: '25px' }} />
+            </div>
           </div>
         </div>
         <Cart show={showModal} handleClose={() => setShowModal(false)} />

@@ -60,4 +60,5 @@ const productSlice = createSlice({
 });
 
 export const { deleteProduct } = productSlice.actions;
+
 export default productSlice.reducer;
